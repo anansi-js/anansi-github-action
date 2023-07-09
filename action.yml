@@ -1,11 +1,10 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'Anansi Github Action'
+description: 'Action for crawling and indexing a website using Anansi'
+author: 'anansi.js'
 inputs:
-  milliseconds: # change this
+  configPath:
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+    description: 'path to the crawler config file'
 runs:
   using: 'node16'
   main: 'dist/index.js'

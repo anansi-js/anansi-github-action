@@ -1,16 +1,20 @@
 import * as core from '@actions/core'
-import {wait} from './wait'
+import {crawlSite} from '@giladbeer/node-spider'
 
 async function run(): Promise<void> {
   try {
-    const ms: string = core.getInput('milliseconds')
-    core.debug(`Waiting ${ms} milliseconds ...`) // debug is only output if you set the secret `ACTIONS_STEP_DEBUG` to true
-
-    core.debug(new Date().toTimeString())
-    await wait(parseInt(ms, 10))
-    core.debug(new Date().toTimeString())
-
-    core.setOutput('time', new Date().toTimeString())
+    await crawlSite({
+      configFilePath: core.getInput('configPath'),
+      searchEngineOpts: {
+        engine: 'algolia',
+        algolia: {
+          apiKey: process.env.ALGOLIA_ADMIN_API_KEY as string,
+          appId: process.env.ALGOLIA_APP_ID as string,
+          indexName: process.env.ALGOLIA_INDEX_NAME as string
+        },
+        generalSettings: {}
+      }
+    })
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message)
   }
