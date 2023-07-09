@@ -1,0 +1,10 @@
+name: 'Anansi Github Action'
+description: 'Action for crawling and indexing a website using Anansi'
+author: 'anansi.js'
+inputs:
+  configPath:
+    required: true
+    description: 'path to the crawler config file'
+runs:
+  using: 'node16'
+  main: '../../dist/index.js'

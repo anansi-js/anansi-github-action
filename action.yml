@@ -6,5 +6,14 @@ inputs:
     required: true
     description: 'path to the crawler config file'
 runs:
-  using: 'node16'
-  main: 'dist/index.js'
+  using: "composite"
+  steps:
+    # a local chromedriver installation is required for running the scraper
+    - uses: nanasess/setup-chromedriver@v1
+    - name: Check out git repository
+      uses: actions/checkout@v3
+
+    - name: Now calling the node action in directory ./actions/node-action
+      uses: ./actions/node-action
+      with:
+        configPath: ${{ inputs.configPath }}
