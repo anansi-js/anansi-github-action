@@ -8,8 +8,8 @@ inputs:
 runs:
   using: "composite"
   steps:
-    # a local chromedriver installation is required for running the scraper
-    - uses: nanasess/setup-chromedriver@v1
+    - uses: browser-actions/setup-chrome@v1
+    - run: chrome --version
     - name: Check out git repository
       uses: actions/checkout@v3
 
