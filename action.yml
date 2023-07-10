@@ -14,6 +14,6 @@ runs:
       uses: actions/checkout@v3
 
     - name: Now calling the node action in directory ./actions/node-action
-      uses: ./actions/node-action
+      uses: anansi-js/anansi-github-action/actions/node-action@main
       with:
         configPath: ${{ inputs.configPath }}
