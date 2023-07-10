@@ -9,7 +9,6 @@ runs:
   using: "composite"
   steps:
     - uses: browser-actions/setup-chrome@v1
-    - run: chrome --version
     - name: Check out git repository
       uses: actions/checkout@v3
 
